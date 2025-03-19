@@ -42,5 +42,19 @@ public class JeuDeCartes {
 		}
 		return sb.toString();
 	}
-
+	
+	public Carte[] donnerCartes() {
+		Carte[] jeu = new Carte[106];
+		int jorys = 0;
+		for (int i = 0; i<19; i++) {
+			for(int j = 0; j< typesDeCartes[i].getNbExemplaires(); j++) {
+				jeu[jorys] = typesDeCartes[i].getCartes();
+				jorys++;
+			}
+		}
+		
+		return jeu;
+		
+		
+	}
 }
