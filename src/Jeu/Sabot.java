@@ -1,4 +1,4 @@
-package Jeu;
+package jeu;
 
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
@@ -9,7 +9,13 @@ import cartes.*;
 public class Sabot implements Iterable<Carte> {
 	private Carte[] cartes;
 	private int nombreOperations = 0;
-	private int nombreCartes = 0;
+	private int nombreCartes;
+	
+	public Sabot(Carte[] cartes) {
+		this.cartes = cartes;
+		this.nombreCartes = cartes.length;
+	}
+
 
 	private class Iterateur implements Iterator<Carte> {
 
@@ -56,10 +62,6 @@ public class Sabot implements Iterable<Carte> {
 
 	}
 
-	public Sabot(Carte[] cartes) {
-		this.cartes = cartes;
-		this.nombreCartes = cartes.length;
-	}
 
 	public boolean estVide() {
 		return nombreCartes == 0;
@@ -83,11 +85,11 @@ public class Sabot implements Iterable<Carte> {
 	}
 	
 	public Carte piocher() {
-		Iterateur toto = new Iterateur();
+		Iterateur iterateur = new Iterateur();
 		Carte carte;
-		if(toto.hasNext()) {
-			carte = toto.next();
-			toto.remove();
+		if(iterateur.hasNext()) {
+			carte = iterateur.next();
+			iterateur.remove();
 			return carte;
 		}else {
 			throw new IllegalStateException();

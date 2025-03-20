@@ -57,4 +57,18 @@ public class JeuDeCartes {
 		
 		
 	}
+	
+	public boolean checkCount() {
+		Carte[] cartes = new Carte[106];
+		cartes = this.donnerCartes();
+		for (int i = 0; i< cartes.length; i++ ) {
+			for(int j = 0; i<typesDeCartes[i].getNbExemplaires();j++) {
+				if(typesDeCartes[i].getCartes() != cartes[i])
+					return false;
+				
+			}
+		}
+		return true;
+		
+	}
 }
