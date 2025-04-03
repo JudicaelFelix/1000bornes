@@ -65,7 +65,6 @@ public class JeuDeCartes {
 			for(int j = 0; i<typesDeCartes[i].getNbExemplaires();j++) {
 				if(typesDeCartes[i].getCartes() != cartes[i])
 					return false;
-				
 			}
 		}
 		return true;
