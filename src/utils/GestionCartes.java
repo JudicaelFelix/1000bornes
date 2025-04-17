@@ -6,17 +6,18 @@ import tests_fonctionnnels.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Random;
 
 
 public class GestionCartes {
 
-	private <E> E extrairev1(List<E> liste) {
+	public <E> E extrairev1(List<E> liste) {
 		Random randomNumbers = new Random();
 		return liste.get(randomNumbers.nextInt(liste.size()));
 	}
 	
-	private <E> List <E> melanger(List<E> liste) {
+	public <E> List <E> melanger(List<E> liste) {
 		List<E> newlist = new ArrayList<>();
 		for(int i =0; i< liste.size(); i++) {
 			newlist.add(extrairev1(liste));
@@ -24,7 +25,7 @@ public class GestionCartes {
 		return newlist;
 	}
 	
-	private <E> boolean verifierMelange(List<E> liste, List<E> liste2) {
+	public <E> boolean verifierMelange(List<E> liste, List<E> liste2) {
 		boolean v = true;
 		if(liste.size() == liste2.size()) {
 			for(int i = 0; i< liste2.size(); i++) {
@@ -34,8 +35,8 @@ public class GestionCartes {
 		return v;
 	}
 	
-}
-	private <E> List <E> rassembler(List<E> liste){
+
+	public <E> List <E> rassembler(List<E> liste){
 		List<E> newlist = new ArrayList<>();
 		for(int i = 0 ; i < liste.size(); i++) {
 			if(!newlist.contains(liste.get(i))) {
@@ -47,10 +48,34 @@ public class GestionCartes {
 		return newlist;
 	}
 	
-	private <E> boolean verifierRassemblement(List<E> liste) {
+	public <E> boolean verifierRassemblement(List<E> liste) {
 		boolean v = true;
-		if(!)
-		
+		boolean apass = false;
+		if(!liste.isEmpty()) {
+			E element = liste.get(0);
+			E previousElement;
+			for(ListIterator<E> iterator = liste.listIterator();iterator.hasNext() && v ;) {
+				previousElement = element;
+				element = iterator.next();
+				if( !previousElement.equals(element) && iterator.hasNext() ) {
+					for(ListIterator<E> iterator2 = liste.listIterator(); iterator2.hasNext() && v;) {
+						if(iterator2.equals(element)) {
+							apass = true;
+						}
+						if(apass) {
+							if(iterator2.equals(previousElement)) {
+								v = false;
+							}
+						}
+						iterator2.next();
+					}
+					
+				}
+				apass = false;
+			}
+		}
+		return v;
+	}
 }
 
 
