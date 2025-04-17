@@ -1,5 +1,6 @@
 package utils;
 import cartes.*;
+import java.util.Collections;
 import jeu.*;
 import tests_fonctionnnels.*;
 
@@ -27,9 +28,10 @@ public class GestionCartes {
 		boolean v = true;
 		if(liste.size() == liste2.size()) {
 			for(int i = 0; i< liste2.size(); i++) {
-				v = ((liste2.get(i)).frequency == liste.get(i).frequency)
+				v = v && (((liste2.frequency(liste2.get(i)) == liste.get(i).frequency));
 			}
 		}
+		return v;
 	}
 	
 }
